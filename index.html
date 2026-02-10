@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Valentine's Day ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .card {
+      max-width: 900px;
+      margin: 3rem auto;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .card p {
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #ff4d6d;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+      color: #ff4d6d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Will You Be My Valentine? 💍❤️</h1>
+    <p>A little question from my heart to yours</p>
+  </header>
+
+  <section class="card">
+    <h2>For You, Always 💖</h2>
+    <p>
+      From the very first moment, you made everything feel warmer, brighter,
+      and more meaningful. This isn’t just a question — it’s a promise of care,
+      laughter, and choosing you every single day.
+    </p>
+
+    <div class="buttons">
+      <button class="btn btn-primary" onclick="sayYes()">Yes 💕</button>
+      <button class="btn btn-outline" onclick="sayForever()">Forever ✨</button>
+    </div>
+  </section>
+
+  <footer>
+    Made with ❤️ just for you
+  </footer>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const quotes = [
+      "Love grows more tremendously full, swift, poignant, as the years multiply.",
+      "You are my today and all of my tomorrows.",
+      "In all the world, there is no heart for me like yours.",
+      "Love is composed of a single soul inhabiting two bodies."
+    ];
+
+    function changeQuote() {
+      const p = document.querySelector('.card p');
+      const random = Math.floor(Math.random() * quotes.length);
+      p.textContent = quotes[random];
+    }
+
+    function sayYes() {
+      alert("Yay!! 💖 You just made my world brighter. Happy Valentine’s Day!");
+    }
+
+    function sayForever() {
+      alert("Forever sounds perfect with you 💍✨");
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 4 + Math.random() * 4 + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+</body>
+</html>
