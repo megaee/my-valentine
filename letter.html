@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Letter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="page2">
+    <!-- petals canvas (shared) -->
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- main content centred on screen -->
+    <div class="content">
+        <!-- parchment letter container -->
+        <div id="letterContainer">
+            <pre id="letterText">
+Dear [Name],
+
+Under the gentle glow of these cherry blossoms,
+I pen this letter with trembling hands.
+
+Every memory of you is a petal in my heart,
+soft, delicate, and beautiful.
+
+May this night bring you joy,
+and this message find you wrapped in love.
+
+~ With all my heart ~
+            </pre>
+        </div>
+
+        <!-- lantern icon that will follow the pointer -->
+        <div id="lamp">🏮</div>
+
+        <!-- revealed after enough light exposure -->
+        <button id="lastSurprise" class="hidden">One Last Surprise 🎁</button>
+    </div>
+
+    <!-- dark overlay with transparent spotlight controlled via CSS variables -->
+    <div id="lampMask"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

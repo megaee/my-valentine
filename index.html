@@ -3,165 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise ❤️</title>
-    <style>
-        :root {
-            --pink: #ff4d6d;
-            --soft-pink: #ffe5ec;
-        }
-
-        body {
-            background-color: var(--soft-pink);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        #container {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 90%;
-            z-index: 10;
-        }
-
-        img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: #d63384;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            position: relative;
-            height: 60px;
-            align-items: center;
-        }
-
-        button {
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        #yesBtn {
-            background-color: var(--pink);
-            color: white;
-            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
-        }
-
-        #noBtn {
-            background-color: #888;
-            color: white;
-            position: absolute;
-        }
-
-        /* Heart Animation */
-        .heart {
-            position: absolute;
-            color: var(--pink);
-            font-size: 20px;
-            animation: float 4s linear infinite;
-            top: 100vh;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            to { transform: translateY(-110vh) rotate(360deg); }
-        }
-    </style>
+    <title>Birthday Surprise - Puzzle</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="page1">
+    <!-- falling petals canvas -->
+    <canvas id="petalCanvas"></canvas>
 
-    <div id="container">
-        <img id="displayImg" src="https://media.tenor.com/jXk0uX8lXoUAAAAi/milk-and-mocha-bear.gif" alt="cute bear">
-        <h1 id="questionText">Will you be my Valentine? 🌹</h1>
-        
-        <div class="btn-group">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
+    <div class="content">
+        <h1>Welcome 🌸</h1>
+        <p>Solve the little puzzle to proceed.</p>
+        <div id="puzzle">
+            <!-- sliding puzzle grid; will be filled by JS -->
+        </div>
+        <button id="checkPuzzle">I've solved it</button>
+        <div id="unlockSection" class="hidden">
+            <div class="animation"></div>
+            <button id="unlockButton">Unlock the Surprise 🌸</button>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script>
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const displayImg = document.getElementById('displayImg');
-        const questionText = document.getElementById('questionText');
+    <div id="musicToggle">
+        <button id="toggleMusic">🎵</button>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <!-- placeholder source; include a calm track named music.mp3 later -->
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-        let noCount = 0;
-        const noMessages = [
-            "No", "Are you sure?", "Really sure??", "Think again!", 
-            "Last chance!", "Surely not?", "You're breaking my heart ;(", 
-            "I'm gonna cry...", "Okay fine, click yes!"
-        ];
-
-        // 1. "No" Button Logic: Shrinks and moves
-        noBtn.addEventListener('mouseover', moveButton);
-        noBtn.addEventListener('click', () => {
-            noCount++;
-            if (noCount < noMessages.length) {
-                noBtn.innerText = noMessages[noCount];
-                // Make Yes button bigger every time No is clicked
-                let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-                yesBtn.style.fontSize = (currentSize + 10) + "px";
-                yesBtn.style.padding = (currentSize + 5) + "px " + (currentSize * 2) + "px";
-            }
-            moveButton();
-        });
-
-        function moveButton() {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
-        }
-
-        // 2. "Yes" Button Logic: Celebration!
-        yesBtn.addEventListener('click', () => {
-            questionText.innerText = "Yay! See you on Feb 14th! ❤️";
-            displayImg.src = "https://media.tenor.com/gU_Ec9S2AcAAAAAi/tkthao219-bubududu.gif"; // Happy bear gif
-            noBtn.style.display = 'none';
-            yesBtn.style.display = 'none';
-            
-            // Trigger Confetti
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff4d6d', '#ff758f', '#ffb3c1']
-            });
-        });
-
-        // 3. Background Heart Rain
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-        setInterval(createHeart, 300);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
