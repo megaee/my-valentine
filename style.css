@@ -224,6 +224,17 @@ h1 {
     opacity: 1;
 }
 
+/* label text inside box body */
+.box .body .label {
+    position: absolute;
+    top: 4px;
+    width: 100%;
+    font-size: 0.7rem;
+    color: #a00;
+    text-align: center;
+    font-weight: bold;
+}
+
 #finalMessage {
     margin-top: 2rem;
     font-size: 1.8rem;
