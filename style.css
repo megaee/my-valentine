@@ -46,6 +46,11 @@ body::after {
     pointer-events: none;
 }
 
+/* page‑specific background images */
+#page1 {
+    background: url('index_bg.jpg') center/cover no-repeat;
+}
+
 /* Container used for centering page content */
 .content {
     position: relative;
@@ -62,10 +67,17 @@ h1 {
     color: #b84d91;
 }
 
+/* override for index page text to contrast pink background */
+#page1 .content h1,
+#page1 .content p {
+    color: rgb(3, 249, 8); /* navy blue for strong contrast */
+}
+
 /* Hidden utility class */
 .hidden {
     display: none !important;
 }
+
 
 /* Puzzle page specific */
 #puzzle {
@@ -175,14 +187,15 @@ h1 {
 .boxes {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 .box {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 280px;
+    height: 280px;
     perspective: 600px;
     cursor: pointer;
 }
@@ -198,7 +211,34 @@ h1 {
     transform-origin: top;
     transition: transform 0.6s ease;
     z-index: 2;
+    border-radius: 8px 8px 0 0;
 }
+
+/* Ribbon decoration across the lid */
+.box .lid::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #ff1493 0%, #ff69b4 50%, #ff1493 100%);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border-radius: 2px;
+}
+
+/* Ribbon bow on top center */
+.box .lid::after {
+    content: '🎀';
+    position: absolute;
+    font-size: 1.5rem;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
 .box.open .lid {
     transform: rotateX(-120deg);
 }
@@ -210,15 +250,19 @@ h1 {
     height: 60%;
     background: #ffe4e1;
     border: 2px solid #d09;
+    border-radius: 0 0 8px 8px;
 }
 .box img {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    top: 10px;
-    left: 10px;
+    width: 220px;
+    height: 220px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.6s ease;
+    object-fit: cover;
+    border-radius: 4px;
 }
 .box.open img {
     opacity: 1;
@@ -227,9 +271,9 @@ h1 {
 /* label text inside box body */
 .box .body .label {
     position: absolute;
-    top: 4px;
+    top: 8px;
     width: 100%;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: #a00;
     text-align: center;
     font-weight: bold;
@@ -239,6 +283,26 @@ h1 {
     margin-top: 2rem;
     font-size: 1.8rem;
     color: #b84d91;
+}
+
+/* Confetti particles */
+.confetti {
+    position: fixed;
+    pointer-events: none;
+    animation: confetti-fade 2.5s ease-out forwards;
+    z-index: 15;
+}
+
+@keyframes confetti-fade {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /* smooth fade transitions between pages */
@@ -254,6 +318,6 @@ body.fade-out { opacity: 0; }
     h1 { font-size: 2rem; }
     #puzzle input { width: 150px; }
     #letterContainer { font-size: 1rem; }
-    .box { width: 90px; height: 90px; }
-    .box img { width: 70px; height: 70px; top: 10px; left: 10px; }
+    .box { width: 200px; height: 200px; }
+    .box img { width: 150px; height: 150px; top: 12px; left: 15px; }
 }

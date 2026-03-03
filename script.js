@@ -218,9 +218,27 @@ function setupBoxesPage() {
     const finalMessage = document.getElementById('finalMessage');
     let opened = 0;
 
+    function launchConfetti(x, y) {
+        const confetti = document.createElement('img');
+        confetti.className = 'confetti';
+        confetti.src = 'Carnaval Celebrating Sticker.gif';
+        // Center the GIF on the box (700px = 5x larger)
+        confetti.style.left = (x - 350) + 'px';  // half width of 700px
+        confetti.style.top = (y - 350) + 'px';   // half height of 700px
+        confetti.style.width = '700px';
+        confetti.style.height = '700px';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2500);
+    }
+
     function openBox(box, imgId) {
         if (box.classList.contains('open')) return;
         box.classList.add('open');
+        
+        // launch confetti from box position
+        const rect = box.getBoundingClientRect();
+        launchConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        
         opened++;
         if (opened >= 2) {
             finalMessage.classList.remove('hidden');
