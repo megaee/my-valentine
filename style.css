@@ -145,7 +145,8 @@ h1 {
     width: 90%;
     max-width: 550px;
     height: 60vh;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
     color: #4b3027; /* dark brown handwriting */
     font-family: 'Segoe Script', cursive;
     font-size: 1.2rem;
