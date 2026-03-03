@@ -60,7 +60,7 @@ function setupPuzzlePage() {
     const unlockBtn = document.getElementById('unlockButton');
     const puzzleEl = document.getElementById('puzzle');
     const size = 3;
-    const imgSrc = 'puzzle.jpg'; // image file in project
+    const imgSrc = 'puzzle.JPG'; // image file in project (match actual repo filename)
     let tiles = [];
     let emptyIndex = size*size - 1;
 

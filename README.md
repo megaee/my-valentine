@@ -16,7 +16,7 @@ This project is a responsive three‑page birthday surprise website with a Japan
   - `tree-left-placeholder.png`, `tree-right-placeholder.png` – corner sakura trees.
   - `parchment-placeholder.jpg` – background for letter page.
   - `image1-placeholder.jpg`, `image2-placeholder.jpg` – contents of surprise boxes.
-  - `puzzle.jpg` – image used for the custom 3x3 sliding puzzle on the entry page (replace with any square image).
+  - `puzzle.JPG` – image used for the custom 3x3 sliding puzzle on the entry page (replace with any square image). Note: filenames are case-sensitive on GitHub Pages.
   - `music.mp3` – calm background track for page 1.
 
 Replace these placeholders with actual media files to finalize the experience.
